@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Peterson Periodontics | San Diego, CA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #1a1a18;
+      --bronze: #9c7d52;
+      --bronze-light: #c4a06e;
+      --cream: #f7f4ef;
+      --warm-white: #faf8f4;
+      --mid-gray: #6b6b67;
+      --light-gray: #e8e4dc;
+      --text: #2c2c28;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      color: var(--text);
+      background: var(--warm-white);
+      font-weight: 300;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      height: 80px;
+      background: rgba(250,248,244,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--light-gray);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--black);
+      text-decoration: none;
+      line-height: 1.2;
+    }
+    .nav-logo span { color: var(--bronze); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--bronze); }
+
+    .nav-right {
+      display: flex; align-items: center; gap: 20px;
+    }
+    .nav-phone {
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      color: var(--mid-gray);
+      text-decoration: none;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 24px;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid var(--bronze);
+      color: var(--bronze);
+      transition: background 0.25s, color 0.25s;
+      font-family: 'Jost', sans-serif;
+    }
+    .btn:hover { background: var(--bronze); color: #fff; }
+    .btn-dark {
+      background: var(--black);
+      border-color: var(--black);
+      color: #fff;
+    }
+    .btn-dark:hover { background: var(--bronze); border-color: var(--bronze); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px 80px 80px;
+      background: var(--warm-white);
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bronze);
+      margin-bottom: 28px;
+      font-weight: 500;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--black);
+      margin-bottom: 28px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--bronze);
+    }
+    .hero-sub {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--mid-gray);
+      max-width: 420px;
+      margin-bottom: 44px;
+      font-weight: 300;
+    }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1a1a18;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+    .hero-image-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(26,26,24,0.15) 0%, transparent 60%);
+    }
+    .hero-badge {
+      position: absolute;
+      bottom: 40px; left: 40px;
+      background: rgba(26,26,24,0.85);
+      color: #fff;
+      padding: 18px 24px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-badge-top {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bronze-light);
+      margin-bottom: 4px;
+    }
+    .hero-badge-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+    }
+
+    /* ── SECTION UTILITY ── */
+    section { padding: 100px 80px; }
+    .section-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bronze);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+    .section-body {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--mid-gray);
+      font-weight: 300;
+      max-width: 560px;
+    }
+    .divider {
+      width: 48px; height: 1px;
+      background: var(--bronze);
+      margin-bottom: 28px;
+    }
+
+    /* ── DOCTORS ── */
+    #doctors { background: var(--cream); }
+    .doctors-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      margin-top: 60px;
+    }
+    .doctor-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--black);
+      aspect-ratio: 3/4;
+    }
+    .doctor-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease, opacity 0.4s;
+      opacity: 0.85;
+    }
+    .doctor-card:hover img { transform: scale(1.04); opacity: 0.7; }
+    .doctor-card-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 40px 36px;
+      background: linear-gradient(transparent, rgba(26,26,24,0.92));
+      color: #fff;
+    }
+    .doctor-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-bottom: 6px;
+    }
+    .doctor-card-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--bronze-light);
+      margin-bottom: 18px;
+    }
+    .doctor-card a { color: var(--bronze-light); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--bronze-light); padding-bottom: 2px; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--warm-white); }
+    .services-intro { max-width: 600px; margin-bottom: 60px; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .service-item {
+      background: var(--cream);
+      padding: 44px 36px;
+      position: relative;
+      transition: background 0.3s;
+      border-top: 2px solid transparent;
+    }
+    .service-item:hover {
+      background: #fff;
+      border-top-color: var(--bronze);
+    }
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--light-gray);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .service-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+    .service-desc {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--mid-gray);
+      font-weight: 300;
+    }
+
+    /* ── GALLERY ── */
+    #gallery {
+      padding: 0;
+      background: var(--black);
+    }
+    .gallery-header {
+      padding: 80px 80px 60px;
+    }
+    .gallery-header .section-title { color: var(--cream); }
+    .gallery-header .section-eyebrow { color: var(--bronze-light); }
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 480px;
+    }
+    .gallery-strip img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(20%);
+      transition: filter 0.4s;
+    }
+    .gallery-strip img:hover { filter: none; }
+
+    /* ── REVIEWS ── */
+    #reviews { background: var(--cream); }
+    .reviews-header { max-width: 500px; margin-bottom: 60px; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .review-card {
+      background: var(--warm-white);
+      padding: 40px 32px;
+      position: relative;
+    }
+    .review-stars {
+      display: flex; gap: 4px;
+      margin-bottom: 20px;
+    }
+    .review-stars span { color: var(--bronze); font-size: 1rem; }
+    .review-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+    .review-author {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--bronze);
+      font-weight: 500;
+    }
+    .open-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: var(--light-gray);
+      line-height: 0.5;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    /* ── CTA BAND ── */
+    #cta-band {
+      background: var(--black);
+      padding: 100px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .cta-band-text .section-title { color: var(--cream); }
+    .cta-band-text .section-eyebrow { color: var(--bronze-light); }
+    .cta-band-right { flex-shrink: 0; }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--warm-white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0;
+    }
+    .contact-info {
+      padding: 80px;
+      background: var(--cream);
+    }
+    .contact-info .section-title { margin-bottom: 36px; }
+    .contact-detail {
+      display: flex; gap: 16px;
+      margin-bottom: 28px;
+      align-items: flex-start;
+    }
+    .contact-icon {
+      width: 36px; height: 36px;
+      background: var(--bronze);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: #fff;
+      font-size: 0.85rem;
+    }
+    .contact-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--bronze);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .contact-value {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .contact-value a { color: var(--text); text-decoration: none; }
+
+    .map-embed {
+      margin-top: 36px;
+      border-top: 1px solid var(--light-gray);
+      padding-top: 28px;
+    }
+    .map-embed iframe {
+      width: 100%;
+      height: 220px;
+      border: none;
+      display: block;
+      filter: sepia(20%) contrast(1.05);
+    }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 8px 24px;
+      margin-top: 8px;
+    }
+    .hours-day { font-size: 0.85rem; color: var(--mid-gray); }
+    .hours-time { font-size: 0.85rem; color: var(--text); }
+
+    .contact-form { padding: 80px; }
+    .contact-form .section-title { margin-bottom: 36px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--bronze);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--light-gray);
+      background: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+      font-weight: 300;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--bronze); }
+    .form-group textarea { height: 100px; resize: vertical; }
+    .form-notice {
+      font-size: 0.75rem;
+      color: var(--mid-gray);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: var(--cream);
+      padding: 60px 80px 36px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+    .footer-brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+      color: var(--cream);
+    }
+    .footer-brand-name span { color: var(--bronze-light); }
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: rgba(247,244,239,0.55);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 260px;
+      font-weight: 300;
+    }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a {
+      width: 34px; height: 34px;
+      border: 1px solid rgba(156,125,82,0.5);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--bronze-light);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .footer-social a:hover { background: var(--bronze); border-color: var(--bronze); color: #fff; }
+    .footer-col-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bronze-light);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a {
+      font-size: 0.85rem;
+      color: rgba(247,244,239,0.6);
+      text-decoration: none;
+      font-weight: 300;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--bronze-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(247,244,239,0.1);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(247,244,239,0.35);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeUp 0.8s ease both; }
+    .delay-1 { animation-delay: 0.15s; }
+    .delay-2 { animation-delay: 0.3s; }
+    .delay-3 { animation-delay: 0.45s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      section { padding: 80px 40px; }
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-text { padding: 60px 40px; }
+      .hero-image { height: 55vw; }
+      .doctors-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+      #contact { grid-template-columns: 1fr; }
+      .contact-info { padding: 60px 40px; }
+      .contact-form { padding: 60px 40px; }
+      #cta-band { flex-direction: column; padding: 80px 40px; }
+      nav { padding: 0 28px; }
+      footer { padding: 60px 40px 36px; }
+      .gallery-header { padding: 60px 40px 40px; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .gallery-strip { grid-template-columns: 1fr; height: auto; }
+      .gallery-strip img { height: 280px; }
+      footer { padding: 48px 28px 28px; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#"><img src="https://cdn.prod.website-files.com/6447fb86d4172224512c5a59/64480fbfcd6c42965bf1a658_UPTOWN_F_Horizontal-blackbronze.svg" alt="Peterson Periodontics" style="height:44px;display:block;"/></a>
+  <ul class="nav-links">
+    <li><a href="#doctors">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#reviews">Patients</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:+16192982322" class="nav-phone">(619) 298-2322</a>
+    <a href="https://petersonperiodon.securepayments.cardpointe.com/pay" target="_blank" rel="noopener noreferrer" class="nav-phone" style="border-bottom:1px solid var(--bronze);color:var(--bronze);padding-bottom:1px;">Pay Your Bill</a>
+    <a href="/referral.html">Refer a Patient</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow fade-in">Periodontist · San Diego, CA</div>
+    <h1 class="hero-title fade-in delay-1">
+      Compassionate<br><em>Periodontal Care</em><br>in San Diego
+    </h1>
+    <p class="hero-sub fade-in delay-2">
+      We're dedicated to delivering exceptional periodontal care and a patient-centered approach to ensure optimal oral health and stunning smiles.
+    </p>
+    <div class="hero-ctas fade-in delay-3">
+      <a href="/referral.html" class="btn">Refer a Patient</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="staff.jpeg" alt="Peterson Periodontics Team"/>
+    <div class="hero-image-overlay"></div>
+    <div class="hero-badge">
+      <div class="hero-badge-top">Serving San Diego</div>
+      <div class="hero-badge-main">Since 1990</div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTORS -->
+<section id="doctors">
+  <div class="section-eyebrow">Our Team</div>
+  <div class="divider"></div>
+  <h2 class="section-title">Meet Your Periodontists</h2>
+  <p class="section-body">Our team brings decades of combined expertise and a genuine commitment to making every patient feel heard, comfortable, and confident in their care.</p>
+  <div class="doctors-grid">
+    <div class="doctor-card">
+      <img src="dr-peterson.jpeg" alt="Dr. Christopher Peterson"/>
+      <div class="doctor-card-info">
+        <div class="doctor-card-name">Dr. Christopher Peterson</div>
+        <div class="doctor-card-title">Periodontist</div>
+        <p style="font-size:0.85rem;color:rgba(247,244,239,0.7);line-height:1.65;font-weight:300;margin-bottom:18px;">Passionate about providing the highest quality care, Dr. Peterson continues the family legacy of excellence in periodontics his father built over 30 years.</p>
+        <a href="#" onclick="document.getElementById('peterson-modal').style.display='block';return false;">Learn More →</a>
+      </div>
+    </div>
+    <div class="doctor-card">
+      <img src="https://cdn.prod.website-files.com/6447fb86d4172224512c5a59/6894f38436a460fb14bd409d_6887e67c3996fe391d6b74ff_IMG_6013%20(1).jpg" alt="Dr. Hunt"/>
+      <div class="doctor-card-info">
+        <div class="doctor-card-name">Dr. Carson Hunt</div>
+        <div class="doctor-card-title">Periodontist</div>
+        <p style="font-size:0.85rem;color:rgba(247,244,239,0.7);line-height:1.65;font-weight:300;margin-bottom:18px;">Dr. Hunt brings commitment, care, and a charming chairside manner — connecting with patients as people before treating them as patients.</p>
+        <a href="#" onclick="document.getElementById('hunt-modal').style.display='block';return false;">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-intro">
+    <div class="section-eyebrow">What We Offer</div>
+    <div class="divider"></div>
+    <h2 class="section-title">Comprehensive Periodontal Services</h2>
+    <p class="section-body">From routine periodontal care to complex surgical procedures, we offer a full range of treatments tailored to your unique needs.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-item">
+      <div class="service-num">01</div>
+      <div class="service-title">Soft Tissue Grafts</div>
+      <p class="service-desc">This procedure is performed with either donor tissue or your own tissue. A microscope is used to allow for a minimally invasive technique that ensures little to no post op pain and fast healing. Dr. Peterson spends countless hours learning and staying up to date on the most advanced techniques.</p>
+    </div>
+    <div class="service-item">
+      <div class="service-num">02</div>
+      <div class="service-title">Ridge Augmentation</div>
+      <p class="service-desc">Performed after tooth extraction, this procedure reconstructs the natural contour of your jaw and gums, rebuilding bone density and restoring oral health.</p>
+    </div>
+    <div class="service-item">
+      <div class="service-num">03</div>
+      <div class="service-title">Dental Implants</div>
+      <p class="service-desc">Replace missing teeth with strong, secure implants that blend seamlessly into your smile, restoring function and confidence that feels entirely natural.</p>
+    </div>
+    <div class="service-item">
+      <div class="service-num">04</div>
+      <div class="service-title">Bone Grafting</div>
+      <p class="service-desc">Restore lost bone structure caused by gum disease or tooth loss to provide a solid foundation for implants and long-term periodontal health.</p>
+    </div>
+    <div class="service-item">
+      <div class="service-num">05</div>
+      <div class="service-title">Periodontal Laser Therapy</div>
+      <p class="service-desc">A minimally invasive, precise treatment for gum disease using advanced laser technology — less discomfort, faster healing, exceptional outcomes.</p>
+    </div>
+    <div class="service-item">
+      <div class="service-num">06</div>
+      <div class="service-title">Crown Lengthening</div>
+      <p class="service-desc">Reshape gum tissue and bone to expose more of the tooth's surface — improving aesthetics or preparing teeth for restorative dental work.</p>
+    </div>
+    <div class="service-item">
+      <div class="service-num">07</div>
+      <div class="service-title">Surgically Facilitated Orthodontic Treatment (SFOT)</div>
+      <p class="service-desc">A surgical procedure that accelerates and enhances orthodontic tooth movement by activating the body's natural healing response, allowing for faster, more predictable results in complex cases.</p>
+    </div>
+    <div class="service-item">
+      <div class="service-num">08</div>
+      <div class="service-title">MARPE Placement</div>
+      <p class="service-desc">Miniscrew-Assisted Rapid Palatal Expansion (MARPE) is a minimally invasive procedure that places micro-anchors to support palatal expansion devices — an effective option for adult patients who require skeletal expansion.</p>
+    </div>
+    <div class="service-item">
+      <div class="service-num">09</div>
+      <div class="service-title">IV Sedation</div>
+      <p class="service-desc">Administered directly into the bloodstream for rapid, controlled relaxation during your procedure. IV sedation keeps you comfortable and at ease while remaining responsive, making it an excellent option for anxious patients or longer procedures.</p>
+    </div>
+    <div class="service-item">
+      <div class="service-num">10</div>
+      <div class="service-title">General Anesthesia</div>
+      <p class="service-desc">For patients who require a deeper level of sedation, general anesthesia allows procedures to be completed while you are fully asleep — ensuring a completely pain-free and stress-free experience from start to finish.</p>
+    </div>
+  </div>
+  <div style="margin-top:48px;">
+    <a href="#contact" class="btn">View All Services</a>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<div id="gallery">
+  <div class="gallery-header">
+    <div class="section-eyebrow">Our Space</div>
+    <div class="divider" style="background:var(--bronze-light);"></div>
+    <h2 class="section-title">A Timeless Office Designed for Comfort</h2>
+  </div>
+  <div class="gallery-strip">
+    <img src="https://lh3.googleusercontent.com/p/AF1QipPRDjkHn6pgMwNA9LgZI58e1nUrorpZaSiWffZo=w1200-h900-k-no" alt="Office photo"/>
+    <img src="https://lh3.googleusercontent.com/p/AF1QipMmA7JbevMftS066As3CyjqmPcVBzVkvygTtFiN=w1200-h900-k-no" alt="Office photo"/>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-header">
+    <div class="section-eyebrow">Patient Stories</div>
+    <div class="divider"></div>
+    <h2 class="section-title">See What Happy Patients Have to Say</h2>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <span class="open-quote">"</span>
+      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="review-quote">Dr. Peterson and his team are incredibly friendly and welcoming the moment you walk in. They go above and beyond to make sure you're comfortable. Here, you'll get personalized attention to detail and compassionate bedside manner.</p>
+      <div class="review-author">Akylah C.</div>
+    </div>
+    <div class="review-card">
+      <span class="open-quote">"</span>
+      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="review-quote">I have been a patient of Dr. Peterson's office for over 20 years. Peterson and his staff are the gold standard by which all other periodontists should be judged. Proactive, caring, responsive, and extremely competent.</p>
+      <div class="review-author">Arthur G.</div>
+    </div>
+    <div class="review-card">
+      <span class="open-quote">"</span>
+      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="review-quote">My family first got to know Dr. Jon Peterson 30 years ago, and the transition to Dr. Christopher Peterson was seamless and very effective. Exceptionally professional, caring, and sensitive to his patients' needs.</p>
+      <div class="review-author">Mira L.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div id="cta-band">
+  <div class="cta-band-text">
+    <div class="section-eyebrow">Ready to Begin?</div>
+    <h2 class="section-title">Discover the Power<br>of a Healthy Smile</h2>
+  </div>
+  <div class="cta-band-right">
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="contact-info">
+    <div class="section-eyebrow">Find Us</div>
+    <div class="divider"></div>
+    <h2 class="section-title">Get In Touch</h2>
+
+    <div class="contact-detail">
+      <div class="contact-icon">📍</div>
+      <div>
+        <div class="contact-label">Address</div>
+        <div class="contact-value">4076 Third Avenue, Suite 201<br>San Diego, CA 92103</div>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-icon">📞</div>
+      <div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-value"><a href="tel:+16192982322">(619) 298-2322</a></div>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value"><a href="/cdn-cgi/l/email-protection#4e272028210e3e2b3a2b3c3d21203e2b3c2721602d2123"><span class="__cf_email__" data-cfemail="a1c8cfc7cee1d1c4d5c4d3d2cecfd1c4d3c8ce8fc2cecc">[email&#160;protected]</span></a></div>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-icon">🕐</div>
+      <div>
+        <div class="contact-label">Office Hours</div>
+        <div class="contact-value">
+          <div class="hours-grid">
+            <span class="hours-day">Mon – Thu</span><span class="hours-time">8:00 AM – 5:00 PM</span>
+            <span class="hours-day">Friday</span><span class="hours-time">Closed</span>
+            <span class="hours-day">Sat – Sun</span><span class="hours-time">Closed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-embed">
+      <div class="contact-label" style="margin-bottom:12px;">Find Us</div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3355.3!2d-117.1653!3d32.7515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d954d746324793%3A0xe4ba06fbc3d3594a!2sPeterson%20Periodontics!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Peterson Periodontics Location Map">
+      </iframe>
+      <a
+        href="https://www.google.com/maps/place/Peterson+Periodontics/@32.7515455,-117.1631024,17z"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="display:inline-block;margin-top:10px;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--bronze);text-decoration:none;font-weight:500;">
+        Get Directions →
+      </a>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <div class="section-eyebrow">Appointments</div>
+    <div class="divider"></div>
+    <h2 class="section-title">Request an Appointment</h2>
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input id="firstName" type="text" placeholder="Jane"/>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input id="lastName" type="text" placeholder="Smith"/>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Email Address</label>
+        <input id="email" type="email" placeholder="jane@email.com"/>
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input id="phone" type="tel" placeholder="(619) 555-0123"/>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Preferred Date</label>
+        <input id="date" type="date"/>
+      </div>
+      <div class="form-group">
+        <label>Preferred Time</label>
+        <select id="time">
+          <option>Morning (8–11 AM)</option>
+          <option>Midday (11 AM–1 PM)</option>
+          <option>Afternoon (1–5 PM)</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Message / Reason for Visit</label>
+      <textarea id="message" placeholder="Please describe your concern or the service you're interested in..."></textarea>
+    </div>
+    <p class="form-notice">* Requested time is not final until you receive confirmation from our office. Please do not submit any Protected Health Information (PHI).</p>
+    <div id="form-error" style="display:none;color:#c0392b;font-size:0.82rem;margin-bottom:12px;"></div>
+    <button id="submit-btn" type="submit" class="btn btn-dark" style="width:100%;padding:16px;font-size:0.78rem;cursor:pointer;border:none;">Send Request</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="https://cdn.prod.website-files.com/6447fb86d4172224512c5a59/64480fbfcd6c42965bf1a658_UPTOWN_F_Horizontal-blackbronze.svg" alt="Peterson Periodontics" style="height:48px;display:block;margin-bottom:16px;filter:invert(1) sepia(1) saturate(0.5) brightness(1.8);"/>
+      <p class="footer-tagline">Dedicated to delivering exceptional periodontal care with compassion and a patient-first approach since 1990.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#">Soft Tissue Grafts</a></li>
+        <li><a href="#">Ridge Augmentation</a></li>
+        <li><a href="#">Dental Implants</a></li>
+        <li><a href="#">Bone Grafting</a></li>
+        <li><a href="#">Laser Therapy</a></li>
+        <li><a href="#">Crown Lengthening</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Practice</div>
+      <ul class="footer-links">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Doctors</a></li>
+        <li><a href="#">Patient Resources</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="/referral.html">Refer a Patient</a></li>
+        <li><a href="https://petersonperiodon.securepayments.cardpointe.com/pay" target="_blank" rel="noopener noreferrer">Pay Your Bill</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="#">4076 Third Avenue, Suite 201</a></li>
+        <li><a href="#">San Diego, CA 92103</a></li>
+        <li><a href="tel:+16192982322">(619) 298-2322</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#ff96919990bf8f9a8b9a8d8c90918f9a8d9690d19c9092"><span class="__cf_email__" data-cfemail="8fe6e1e9e0cfffeafbeafdfce0e1ffeafde6e0a1ece0e2">[email&#160;protected]</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© Peterson Periodontics 2025. All rights reserved.</span>
+    <a href="#" style="font-size:0.72rem;color:rgba(247,244,239,0.35);text-decoration:none;letter-spacing:0.08em;">Privacy Policy</a>
+  </div>
+</footer>
+
+
+<!-- DR. PETERSON MODAL -->
+<div id="peterson-modal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(26,26,24,0.75);backdrop-filter:blur(4px);overflow-y:auto;padding:60px 20px;">
+  <div style="max-width:720px;margin:0 auto;background:var(--warm-white);padding:60px;position:relative;">
+    <button onclick="document.getElementById('peterson-modal').style.display='none'" style="position:absolute;top:20px;right:24px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--mid-gray);line-height:1;">✕</button>
+    <div style="font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bronze);font-weight:500;margin-bottom:16px;">About</div>
+    <div style="width:48px;height:1px;background:var(--bronze);margin-bottom:28px;"></div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--black);margin-bottom:32px;line-height:1.2;">Get to Know Dr. Christopher Peterson</h2>
+    <img src="dr-peterson.jpeg" alt="Dr. Christopher Peterson" style="width:100%;max-height:360px;object-fit:cover;object-position:top;margin-bottom:32px;"/>
+    <div style="font-size:0.97rem;line-height:1.85;color:var(--mid-gray);font-weight:300;">
+      <p style="margin-bottom:18px;">Dr. Christopher Peterson has been a part of this practice for most of his life. Even before attending dental school he worked in almost every other position in the office, from receptionist to maintenance man. He feels very fortunate to have had the opportunity to work with his father Jon Peterson before he retired.</p>
+      <p style="margin-bottom:18px;">Dr. Peterson's goal is to continue to provide the quality care that this practice was founded on while adding the skills and knowledge he is constantly improving upon through continuing education. Dr. Peterson works hard to stay at the cutting edge of dentistry and attends as much continuing education as possible. He is well versed in everything from full mouth surgical restoration to soft tissue plastic surgery.</p>
+      <p style="margin-bottom:18px;">He is the proud founder and leader of a Dental Study Club where he and his colleagues meet monthly to share and learn from each other. Through this study club, Dr. Peterson and his colleagues engage in in-depth discussions, case presentations, and educational seminars, aiming to elevate the standard of dental care in their community.</p>
+      <p style="margin-bottom:18px;">Dr. Peterson strives to make sure that every person he treats is made to feel as comfortable and informed as possible.</p>
+      <p>In his free time, he enjoys spending time with his wife and two children. His hobbies are surfing, snowboarding, skiing, bicycling, and traveling.</p>
+    </div>
+  </div>
+</div>
+
+<!-- DR. HUNT MODAL -->
+<div id="hunt-modal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(26,26,24,0.75);backdrop-filter:blur(4px);overflow-y:auto;padding:60px 20px;">
+  <div style="max-width:720px;margin:0 auto;background:var(--warm-white);padding:60px;position:relative;">
+    <button onclick="document.getElementById('hunt-modal').style.display='none'" style="position:absolute;top:20px;right:24px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--mid-gray);line-height:1;">✕</button>
+    <div style="font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bronze);font-weight:500;margin-bottom:16px;">About</div>
+    <div style="width:48px;height:1px;background:var(--bronze);margin-bottom:28px;"></div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--black);margin-bottom:32px;line-height:1.2;">Get to Know Dr. Carson Hunt</h2>
+    <img src="https://cdn.prod.website-files.com/6447fb86d4172224512c5a59/6894f38436a460fb14bd409d_6887e67c3996fe391d6b74ff_IMG_6013%20(1).jpg" alt="Dr. Carson Hunt" style="width:100%;max-height:360px;object-fit:cover;object-position:top;margin-bottom:32px;"/>
+    <div style="font-size:0.97rem;line-height:1.85;color:var(--mid-gray);font-weight:300;">
+      <p style="margin-bottom:18px;">Dr. Carson Hunt's calm demeanor and superb clinical skills make him the perfect match for Peterson Periodontics. He completed both dental school and his periodontics residency at UCLA.</p>
+      <p style="margin-bottom:18px;font-style:italic;color:var(--text);border-left:2px solid var(--bronze);padding-left:20px;">"My personal philosophy for patient care is based on mutual trust, honesty, and education. I am extroverted in nature, so I strive to create a patient experience where they can feel relaxed and conversational, while trusting that their care is my top priority."</p>
+      <p>Originally from Northern California, he is now happy to call San Diego home. In his free time, he likes to hike and scuba dive with his wife.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Sticky nav shadow
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Close modal on backdrop click
+  document.getElementById('peterson-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.style.display = 'none';
+  });
+  document.getElementById('hunt-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.style.display = 'none';
+  });
+
+  // Form submit — sends to Node.js server
+  const submitBtn = document.getElementById('submit-btn');
+  const formError = document.getElementById('form-error');
+
+  submitBtn.addEventListener('click', async () => {
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName  = document.getElementById('lastName').value.trim();
+    const email     = document.getElementById('email').value.trim();
+    const phone     = document.getElementById('phone').value.trim();
+    const date      = document.getElementById('date').value;
+    const time      = document.getElementById('time').value;
+    const message   = document.getElementById('message').value.trim();
+
+    formError.style.display = 'none';
+
+    if (!firstName || !lastName || !email) {
+      formError.textContent = 'Please fill in your name and email address.';
+      formError.style.display = 'block';
+      return;
+    }
+
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch('/api/submit-appointment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName, lastName, email, phone, date, time, message }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        submitBtn.textContent = 'Request Sent ✓';
+        submitBtn.style.background = 'var(--bronze)';
+        submitBtn.style.borderColor = 'var(--bronze)';
+        ['firstName','lastName','email','phone','date','message'].forEach(id => {
+          document.getElementById(id).value = '';
+        });
+      } else {
+        formError.textContent = data.error || 'Something went wrong. Please call us directly.';
+        formError.style.display = 'block';
+        submitBtn.textContent = 'Send Request';
+        submitBtn.disabled = false;
+      }
+    } catch (err) {
+      formError.textContent = 'Could not send. Please call (619) 298-2322.';
+      formError.style.display = 'block';
+      submitBtn.textContent = 'Send Request';
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
