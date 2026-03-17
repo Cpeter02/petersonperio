@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/submit-appointment.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "rewrites": [
+    { "source": "/submit-appointment", "destination": "/api/submit-appointment" }
+  ]
+}
