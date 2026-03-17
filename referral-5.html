@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Refer a Patient | Peterson Periodontics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #1a1a18;
+      --bronze: #9c7d52;
+      --bronze-light: #c4a06e;
+      --cream: #f7f4ef;
+      --warm-white: #faf8f4;
+      --mid-gray: #6b6b67;
+      --light-gray: #e8e4dc;
+      --text: #2c2c28;
+      --navy: #1a2b3c;
+    }
+    body { font-family: 'Jost', sans-serif; color: var(--text); background: var(--warm-white); font-weight: 300; }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 80px;
+      background: var(--warm-white);
+      border-bottom: 2px solid var(--navy);
+    }
+    .nav-logo img { height: 44px; display: block; }
+    .nav-back {
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--bronze); text-decoration: none; font-weight: 500;
+      border-bottom: 1px solid var(--bronze); padding-bottom: 2px;
+    }
+
+    .page-hero { background: var(--navy); padding: 72px 80px; }
+    .eyebrow { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze-light); font-weight: 500; margin-bottom: 16px; }
+    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; color: var(--cream); line-height: 1.2; margin-bottom: 16px; }
+    .page-hero p { font-size: 0.95rem; color: rgba(247,244,239,0.6); line-height: 1.75; max-width: 520px; }
+
+    .form-wrapper { max-width: 780px; margin: 0 auto; padding: 72px 40px; }
+
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--black); margin-bottom: 28px; padding-bottom: 12px; border-bottom: 1px solid var(--light-gray); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group { margin-bottom: 20px; }
+
+    .form-group label.field-label {
+      display: block; font-size: 0.68rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--bronze); font-weight: 500; margin-bottom: 8px;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="tel"],
+    .form-group input[type="email"],
+    .form-group input[type="date"],
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 12px 16px;
+      border: 1px solid var(--light-gray);
+      background: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.92rem; color: var(--text);
+      outline: none; transition: border-color 0.2s;
+      font-weight: 300;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-group input[type="text"]:focus,
+    .form-group input[type="tel"]:focus,
+    .form-group input[type="email"]:focus,
+    .form-group input[type="date"]:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--bronze); }
+    .form-group textarea { height: 120px; resize: vertical; }
+
+    .checkbox-grid {
+      background: var(--cream); border: 1px solid var(--light-gray);
+      padding: 16px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .check-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.88rem; color: var(--text); cursor: pointer;
+    }
+    .check-item input[type="checkbox"] {
+      width: 18px; height: 18px; min-width: 18px;
+      accent-color: var(--bronze); cursor: pointer;
+    }
+
+    .other-box { display: none; margin-top: 12px; }
+    .other-box textarea {
+      width: 100%; padding: 12px 16px;
+      border: 1px solid var(--light-gray); background: var(--cream);
+      font-family: 'Jost', sans-serif; font-size: 0.92rem;
+      color: var(--text); outline: none; resize: vertical;
+      height: 80px; font-weight: 300;
+    }
+    .other-box textarea:focus { border-color: var(--bronze); }
+
+    .tooth-section { margin-bottom: 20px; }
+    .tooth-label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bronze); font-weight: 500; margin-bottom: 10px; display: block; }
+    .tooth-chart { background: var(--cream); border: 1px solid var(--light-gray); padding: 20px; }
+    .tooth-row { display: flex; gap: 4px; justify-content: center; margin-bottom: 6px; }
+    .tooth-legend { display: flex; justify-content: space-between; font-size: 0.68rem; color: var(--mid-gray); margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--light-gray); }
+    .arch-label { text-align: center; font-size: 0.65rem; color: var(--mid-gray); letter-spacing: 0.1em; text-transform: uppercase; margin: 4px 0; }
+
+    .radio-group { display: flex; flex-wrap: wrap; gap: 12px; }
+    .radio-item { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; cursor: pointer; }
+    .radio-item input[type="radio"] { width: 18px; height: 18px; accent-color: var(--bronze); cursor: pointer; }
+
+    hr { margin: 36px 0; border: none; border-top: 1px solid var(--light-gray); }
+
+    .form-notice { font-size: 0.75rem; color: var(--mid-gray); margin-bottom: 20px; line-height: 1.6; }
+
+    #form-error { color: #c0392b; font-size: 0.82rem; margin-bottom: 12px; display: none; }
+    #form-success { background: var(--cream); border-left: 3px solid var(--bronze); padding: 20px 24px; margin-bottom: 20px; font-size: 0.92rem; line-height: 1.7; display: none; }
+
+    .btn-submit {
+      width: 100%; padding: 16px; background: var(--navy); color: #fff;
+      border: none; font-family: 'Jost', sans-serif; font-size: 0.78rem;
+      letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+      cursor: pointer; transition: background 0.25s;
+    }
+    .btn-submit:hover { background: var(--bronze); }
+
+    footer { background: var(--navy); color: var(--cream); padding: 36px 80px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 0.75rem; color: rgba(247,244,239,0.35); }
+    .footer-contact { font-size: 0.82rem; color: rgba(247,244,239,0.6); }
+    .footer-contact a { color: var(--bronze-light); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 24px; }
+      .page-hero { padding: 48px 24px; }
+      .form-wrapper { padding: 48px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .checkbox-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 12px; padding: 36px 24px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="https://cdn.prod.website-files.com/6447fb86d4172224512c5a59/64480fbfcd6c42965bf1a658_UPTOWN_F_Horizontal-blackbronze.svg" alt="Peterson Periodontics"/>
+  </a>
+  <a href="/" class="nav-back">← Back to Website</a>
+</nav>
+
+<div class="page-hero">
+  <div class="eyebrow">For Referring Doctors</div>
+  <h1>Refer a Patient</h1>
+  <p>Complete the form below and we'll follow up with your patient promptly. For urgent referrals please call us directly at (619) 298-2322.</p>
+</div>
+
+<div class="form-wrapper">
+
+  <div class="section-title">Patient Information</div>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="field-label">Patient First Name *</label>
+      <input type="text" id="patientFirst" placeholder="Jane"/>
+    </div>
+    <div class="form-group">
+      <label class="field-label">Patient Last Name *</label>
+      <input type="text" id="patientLast" placeholder="Smith"/>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="field-label">Patient Phone *</label>
+      <input type="tel" id="patientPhone" placeholder="(619) 555-0123"/>
+    </div>
+    <div class="form-group">
+      <label class="field-label">Date of Birth</label>
+      <input type="date" id="patientDOB"/>
+    </div>
+  </div>
+
+  <hr/>
+  <div class="section-title">Referred For *</div>
+  <div class="checkbox-grid">
+    <label class="check-item"><input type="checkbox" name="referredFor" value="Recession"/> Recession</label>
+    <label class="check-item"><input type="checkbox" name="referredFor" value="Periodontal Disease"/> Periodontal Disease</label>
+    <label class="check-item"><input type="checkbox" name="referredFor" value="Extraction"/> Extraction</label>
+    <label class="check-item"><input type="checkbox" name="referredFor" value="Implant Evaluation"/> Implant Evaluation</label>
+    <label class="check-item"><input type="checkbox" name="referredFor" value="SFOT"/> SFOT</label>
+    <label class="check-item"><input type="checkbox" name="referredFor" value="MARPE"/> MARPE</label>
+    <label class="check-item"><input type="checkbox" name="referredFor" value="Biopsy"/> Biopsy</label>
+    <label class="check-item"><input type="checkbox" name="referredFor" value="Bone Grafting"/> Bone Grafting</label>
+    <label class="check-item"><input type="checkbox" name="referredFor" value="Frenectomy"/> Frenectomy</label>
+    <label class="check-item"><input type="checkbox" name="referredFor" value="Fiberotomy"/> Fiberotomy</label>
+    <label class="check-item"><input type="checkbox" name="referredFor" value="Other" id="otherCheckbox"/> Other</label>
+  </div>
+  <div class="other-box" id="otherBox">
+    <label class="field-label" style="margin-top:12px;display:block;">Please Specify *</label>
+    <textarea id="otherReason" placeholder="Describe the reason for referral..."></textarea>
+  </div>
+
+  <hr/>
+  <div class="section-title">Tooth Number(s)</div>
+  <div class="tooth-section">
+    <span class="tooth-label">Click to select affected teeth</span>
+    <div class="tooth-chart">
+      <div class="arch-label">Upper</div>
+      <div class="tooth-row" id="upper-row"></div>
+      <div style="height:12px;"></div>
+      <div class="tooth-row" id="lower-row"></div>
+      <div class="arch-label">Lower</div>
+      <div class="tooth-legend">
+        <span>Patient's Right</span>
+        <span>Patient's Left</span>
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+  <div class="section-title">X-Rays</div>
+  <div class="form-group">
+    <div class="radio-group">
+      <label class="radio-item"><input type="radio" name="xray" value="Mailed"/> Mailed</label>
+      <label class="radio-item"><input type="radio" name="xray" value="Sent with patient"/> Sent with patient</label>
+      <label class="radio-item"><input type="radio" name="xray" value="E-mailed"/> E-mailed</label>
+      <label class="radio-item"><input type="radio" name="xray" value="Please take x-rays"/> Please take x-rays</label>
+    </div>
+  </div>
+
+  <hr/>
+  <div class="section-title">Referring Doctor</div>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="field-label">Doctor Name *</label>
+      <input type="text" id="referringDoctor" placeholder="Dr. Jane Smith"/>
+    </div>
+    <div class="form-group">
+      <label class="field-label">Practice Name</label>
+      <input type="text" id="practiceName" placeholder="Smith Dental"/>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="field-label">Phone</label>
+      <input type="tel" id="doctorPhone" placeholder="(619) 555-0000"/>
+    </div>
+    <div class="form-group">
+      <label class="field-label">Email</label>
+      <input type="email" id="doctorEmail" placeholder="doctor@practice.com"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="field-label">Additional Comments</label>
+    <textarea id="comments" placeholder="Any additional notes or instructions..."></textarea>
+  </div>
+
+  <p class="form-notice">* Required fields. Please do not submit any Protected Health Information (PHI) beyond what is requested above.</p>
+  <div id="form-error"></div>
+  <div id="form-success">
+    <strong style="color:var(--black);">Referral received!</strong><br/>
+    Thank you for referring your patient to Peterson Periodontics. We will contact them promptly. If you have any questions please call <a href="tel:+16192982322">(619) 298-2322</a>.
+  </div>
+  <button class="btn-submit" id="submit-btn">Submit Referral</button>
+
+</div>
+
+<footer>
+  <span class="footer-copy">© Peterson Periodontics 2025</span>
+  <span class="footer-contact">
+    <a href="tel:+16192982322">(619) 298-2322</a> &nbsp;·&nbsp;
+    <a href="mailto:info@petersonperio.com">info@petersonperio.com</a> &nbsp;·&nbsp;
+    4076 Third Avenue, Suite 201, San Diego, CA 92103
+  </span>
+</footer>
+
+<script>
+  // ── Tooth chart ──
+  const upperTeeth = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+  const lowerTeeth = [32,31,30,29,28,27,26,25,24,23,22,21,20,19,18,17];
+  const selectedTeeth = new Set();
+
+  function buildRow(teeth, rowId) {
+    const row = document.getElementById(rowId);
+    teeth.forEach(function(num) {
+      const tooth = document.createElement('div');
+      tooth.style.cssText = 'width:36px;height:36px;border:1px solid #e8e4dc;background:#fff;cursor:pointer;font-size:0.68rem;font-family:Jost,sans-serif;color:#6b6b67;display:flex;align-items:center;justify-content:center;user-select:none;flex-shrink:0;';
+      tooth.textContent = num;
+      tooth.addEventListener('click', function() {
+        if (selectedTeeth.has(num)) {
+          selectedTeeth.delete(num);
+          tooth.style.background = '#fff';
+          tooth.style.color = '#6b6b67';
+          tooth.style.borderColor = '#e8e4dc';
+        } else {
+          selectedTeeth.add(num);
+          tooth.style.background = '#9c7d52';
+          tooth.style.color = '#fff';
+          tooth.style.borderColor = '#9c7d52';
+        }
+      });
+      row.appendChild(tooth);
+    });
+  }
+
+  buildRow(upperTeeth, 'upper-row');
+  buildRow(lowerTeeth, 'lower-row');
+
+  // ── Other checkbox ──
+  document.getElementById('otherCheckbox').addEventListener('change', function() {
+    document.getElementById('otherBox').style.display = this.checked ? 'block' : 'none';
+    if (!this.checked) document.getElementById('otherReason').value = '';
+  });
+
+  // ── Form submit ──
+  document.getElementById('submit-btn').addEventListener('click', async function() {
+    const patientFirst    = document.getElementById('patientFirst').value.trim();
+    const patientLast     = document.getElementById('patientLast').value.trim();
+    const patientPhone    = document.getElementById('patientPhone').value.trim();
+    const patientDOB      = document.getElementById('patientDOB').value;
+    const referringDoctor = document.getElementById('referringDoctor').value.trim();
+    const practiceName    = document.getElementById('practiceName').value.trim();
+    const doctorPhone     = document.getElementById('doctorPhone').value.trim();
+    const doctorEmail     = document.getElementById('doctorEmail').value.trim();
+    const comments        = document.getElementById('comments').value.trim();
+    const otherReason     = document.getElementById('otherReason').value.trim();
+    const xray            = (document.querySelector('input[name="xray"]:checked') || {}).value || '—';
+    const teeth           = selectedTeeth.size > 0 ? Array.from(selectedTeeth).sort(function(a,b){return a-b;}).join(', ') : '—';
+    const checkedBoxes    = Array.from(document.querySelectorAll('input[name="referredFor"]:checked')).map(function(cb){return cb.value;});
+    const finalReferredFor = checkedBoxes.map(function(v){ return v === 'Other' ? 'Other: ' + otherReason : v; }).join(', ');
+
+    const errorEl = document.getElementById('form-error');
+    errorEl.style.display = 'none';
+
+    if (!patientFirst || !patientLast || !patientPhone || !referringDoctor) {
+      errorEl.textContent = 'Please fill in all required fields.';
+      errorEl.style.display = 'block';
+      return;
+    }
+    if (checkedBoxes.length === 0) {
+      errorEl.textContent = 'Please select at least one reason for referral.';
+      errorEl.style.display = 'block';
+      return;
+    }
+    if (checkedBoxes.includes('Other') && !otherReason) {
+      errorEl.textContent = 'Please specify the reason for referral.';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('/api/submit-referral', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ patientFirst, patientLast, patientPhone, patientDOB, referredFor: finalReferredFor, teeth, xray, referringDoctor, practiceName, doctorPhone, doctorEmail, comments })
+      });
+      const data = await res.json();
+      if (data.success) {
+        document.getElementById('form-success').style.display = 'block';
+        btn.textContent = 'Referral Submitted ✓';
+        btn.style.background = '#9c7d52';
+        document.getElementById('form-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        errorEl.textContent = data.error || 'Something went wrong. Please call (619) 298-2322.';
+        errorEl.style.display = 'block';
+        btn.textContent = 'Submit Referral';
+        btn.disabled = false;
+      }
+    } catch(e) {
+      errorEl.textContent = 'Could not send. Please call (619) 298-2322.';
+      errorEl.style.display = 'block';
+      btn.textContent = 'Submit Referral';
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
