@@ -1,0 +1,11 @@
+{
+  "name": "petersonperio-website",
+  "version": "1.0.0",
+  "description": "Peterson Periodontics website",
+  "engines": {
+    "node": "24.x"
+  },
+  "dependencies": {
+    "resend": "^3.2.0"
+  }
+}
